@@ -1,0 +1,16 @@
+[
+{
+  "modid": "thirdpersonelytra",
+  "name": "Third Person Elytra",
+  "description": "Automatically switch in and out of third person while flying!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["pauljoda"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
