@@ -6,6 +6,7 @@ import com.pauljoda.thirdpersonelytra.manager.ConfigManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -33,8 +34,8 @@ public class KeyPressedEvent {
                 && event.getAction() == 1) {
                 ThirdPersonElytra.isToggleEnabled = !ThirdPersonElytra.isToggleEnabled;
                 ConfigManager.setValueAndSave(ConfigManager.ELYTRA_ENABLED_PATH, ThirdPersonElytra.isToggleEnabled);
-                Minecraft.getInstance().player.sendChatMessage(I18n.format(
-                        ThirdPersonElytra.isToggleEnabled ? "text.toggle.enabled" : "text.toggle.disabled"));
+            Minecraft.getInstance().player.sendStatusMessage(new TextComponentString(I18n.format(
+                        ThirdPersonElytra.isToggleEnabled ? "text.toggle.enabled" : "text.toggle.disabled")), true);
         }
     }
 }
