@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[24,)"
+issueTrackerURL="https://github.com/pauljoda/Third-Person-Elytra/issues"
+
+[[mods]]
+  modId="thirdpersonelytra"
+  namespace="thirdpersonelytra"
+  version="${version}"
+  displayName="Third Person Elytra"
+  displayURL="https://www.curseforge.com/minecraft/mc-mods/third-person-elytra"
+  authors="pauljoda"
+  description='''
+  Toggles in and out of third person while elytra flying
+  '''
+[[dependencies.thirdpersonelytra]]
+    modId="forge"
+    mandatory=true
+    versionRange="[${forge_version},)"
+    ordering="NONE"
+    side="CLIENT"

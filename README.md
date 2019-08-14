@@ -1,5 +1,5 @@
 # Third-Person-Elytra
-<a href='https://minecraft.curseforge.com/projects/third-person-elytra'><img src='http://cf.way2muchnoise.eu/full_third-person-elytra_downloads.svg'><img src='http://cf.way2muchnoise.eu/versions/third-person-elytra_latest.svg'></a>
+<a href='https://minecraft.curseforge.com/projects/third-person-elytra'><img src='http://cf.way2muchnoise.eu/full_third-person-elytra_downloads.svg'><img src='http://cf.way2muchnoise.eu/versions/third-person-elytra.svg'></a>
 
 Minecraft mod to automatically switch in and out of third person while elytra flying!
 
