@@ -26,6 +26,7 @@ public class ThirdPersonElytra {
 
             // Registers the toggle keys
             MinecraftForge.EVENT_BUS.register(KeyPressedEvent.INSTANCE);
+            KeyPressedEvent.INSTANCE.registerBindings();
 
             // Inline method, just want to update local values on changes
             FMLJavaModLoadingContext.get().getModEventBus().addListener((ModConfig.ModConfigEvent event) -> {
@@ -35,7 +36,6 @@ public class ThirdPersonElytra {
                     ConfigManager.updateValues(config);
                 }
             });
-            KeyPressedEvent.INSTANCE.registerBindings();
             ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigManager.CLIENT_SPEC);
         } else { // Warn servers about running client side mod
             LogManager.getLogger(Reference.MOD_ID).error("Warning: You are running Third Person Elytra on a server." +

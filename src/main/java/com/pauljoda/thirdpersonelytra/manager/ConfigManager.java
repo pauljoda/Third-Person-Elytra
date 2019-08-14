@@ -12,9 +12,6 @@ public class ConfigManager {
      * Variables                                                                                                       *
      *******************************************************************************************************************/
 
-    // Public instance of manager, for subscribing event
-    public static ConfigManager INSTANCE = new ConfigManager();
-
     // Value for path to variable in config
     public static final String ELYTRA_ENABLED_PATH = "elytraenabled";
 
