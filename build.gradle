@@ -160,11 +160,13 @@ uploadArchives {
                                 distribution 'repo'
                             }
                         }
-                        developer {
-                            id 'pauljoda'
-                            name 'pauljoda'
-                            roles {
-                                role 'developer'
+                        developers {
+                            developer {
+                                id 'pauljoda'
+                                name 'pauljoda'
+                                roles {
+                                    role 'developer'
+                                }
                             }
                         }
                     }
