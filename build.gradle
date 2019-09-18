@@ -64,19 +64,115 @@ minecraft {
     }
 }
 
+configurations {
+    deployerJars
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.1.6'
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
+}
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+}
+
+task devJar(type: Jar, dependsOn: 'classes') {
+    from(sourceSets.main.output) {
+        include '**'
+    }
+    extension = 'jar'
+    classifier = 'dev'
+}
+
+task deobfJar(type: Jar) {
+    classifier = "deobf"
+    from sourceSets.main.output
+}
+
+task javadocJar(type: Zip, dependsOn: javadoc) {
+    from 'build/docs/javadoc'
+    classifier = 'javadoc'
+}
+
+task sourceJarJava(type: Jar, dependsOn: "classes") {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives devJar
+    archives sourceJarJava
+    archives javadocJar
+    archives deobfJar
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
+}
+
+uploadArchives {
+    if (project.hasProperty("password")) {
+        repositories {
+            mavenDeployer {
+                configuration = configurations.deployerJars
+                repository(url: "scp://dyonovan.com/srv/http/maven2") {
+                    authentication(userName: "http", password: "${password}")
+                }
+
+                pom {
+                    groupId = project.group
+                    version = project.version
+                    artifactId = project.archivesBaseName
+
+                    pom.project {
+                        name project.archivesBaseName
+                        packaging 'jar'
+                        description 'ThirdPersonElytra'
+                        url 'https://github.com/pauljoda/Third-Person-Elytra'
+                        scm {
+                            url 'https://github.com/pauljoda/Third-Person-Elytra'
+                            connection 'scm:git:git@github.com/pauljoda/Third-Person-Elytra.git'
+                            developerConnection 'scm:git:git@github.com/TeamBR-Modding/Nucleus.git'
+                        }
+                        issueManagement {
+                            system 'github'
+                            url 'https://github.com/pauljoda/Third-Person-Elytra/issues'
+                        }
+                        licenses {
+                            license {
+                                name 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License'
+                                url 'http://creativecommons.org/licenses/by-nc-sa/4.0/'
+                                distribution 'repo'
+                            }
+                        }
+                        developer {
+                            id 'pauljoda'
+                            name 'pauljoda'
+                            roles {
+                                role 'developer'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
-            "Specification-Title": "thirdpersonelytra",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title": "thirdpersonelytra",
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
