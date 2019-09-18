@@ -116,12 +116,12 @@ dependencies {
 }
 
 uploadArchives {
-    if (project.hasProperty("password")) {
+    if (System.getenv("password")) {
         repositories {
             mavenDeployer {
                 configuration = configurations.deployerJars
                 repository(url: "scp://dyonovan.com/srv/http/maven2") {
-                    authentication(userName: "http", password: "${password}")
+                    authentication(userName: "http", password: System.getenv("password"))
                 }
 
                 pom {
