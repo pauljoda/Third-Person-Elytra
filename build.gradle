@@ -11,9 +11,19 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 
-version = '1.2'
+String build = ""
+if (project.hasProperty("password")) {
+    build = "B" + project.ext["build.number"]
+}
+if (build == null || build == '') {
+    version = "${project.minecraft_version}-${project.mod_version}"
+} else {
+    version = "${project.minecraft_version}-${project.mod_version}-" + build
+}
+
+version = '${project.mod_version}'
 group = 'com.pauljoda.thirdpersonelytra' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'thirdpersonelytra'
 
@@ -69,7 +79,7 @@ configurations {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.1.6'
+    minecraft 'net.minecraftforge:forge:1.14.4-' + project.forge_version
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
 }
 
