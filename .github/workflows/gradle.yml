@@ -16,4 +16,4 @@ jobs:
     - name: Build with Gradle
       env:
          password: ${{ secrets.PASSWORD }}
-      run: ./gradlew build
+      run: ./gradlew build uploadArchives
