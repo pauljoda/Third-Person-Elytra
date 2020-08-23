@@ -23,7 +23,7 @@ if (build == null || build == '') {
     version = "${project.minecraft_version}-${project.mod_version}-" + build
 }
 
-version = '${project.mod_version}'
+version = '1.2'
 group = 'com.pauljoda.thirdpersonelytra' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'thirdpersonelytra'
 
