@@ -1,6 +1,7 @@
 modLoader="javafml"
 loaderVersion="[28,)"
 issueTrackerURL="https://github.com/pauljoda/Third-Person-Elytra/issues"
+license="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 [[mods]]
   modId="thirdpersonelytra"

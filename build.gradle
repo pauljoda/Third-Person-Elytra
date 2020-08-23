@@ -35,7 +35,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: '20200514-1.15.1'
+    mappings channel: 'snapshot', version: '20200813-1.16.1'
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -79,7 +79,7 @@ configurations {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.2-' + project.forge_version
+    minecraft 'net.minecraftforge:forge:1.16.2-' + project.forge_version
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
 }
 
