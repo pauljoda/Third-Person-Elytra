@@ -117,18 +117,18 @@ artifacts {
 repositories {
     mavenCentral()
 }
-
-dependencies {
-    deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
-}
-
+//
+//dependencies {
+//    deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
+//}
+//
 uploadArchives {
-    if (System.getenv("password")) {
+    if (System.getenv("GITHUB_TOKEN")) {
         repositories {
             mavenDeployer {
                 configuration = configurations.deployerJars
-                repository(url: "scp://dyonovan.com/srv/http/maven2") {
-                    authentication(userName: "http", password: System.getenv("password"))
+                repository(url: "https://maven.pkg.github.com/pauljoda") {
+                    authentication(userName: "pauljoda", password: System.getenv("GITHUB_TOKEN"))
                 }
 
                 pom {
