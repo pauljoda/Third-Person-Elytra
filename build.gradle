@@ -11,16 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
-
-String build = ""
-if (project.hasProperty("password")) {
-    build = "B" + project.ext["build.number"]
-}
-if (build == null || build == '') {
-    version = "${project.minecraft_version}-${project.mod_version}"
-} else {
-    version = "${project.minecraft_version}-${project.mod_version}-" + build
-}
+apply plugin: 'maven-publish'
 
 version = '1.2'
 group = 'com.pauljoda.thirdpersonelytra' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -122,53 +113,21 @@ repositories {
 //    deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
 //}
 //
-uploadArchives {
-    if (System.getenv("GITHUB_TOKEN")) {
-        repositories {
-            mavenDeployer {
-                configuration = configurations.deployerJars
-                repository(url: "https://maven.pkg.github.com/pauljoda") {
-                    authentication(userName: "pauljoda", password: System.getenv("GITHUB_TOKEN"))
-                }
 
-                pom {
-                    groupId = project.group
-                    version = project.version
-                    artifactId = project.archivesBaseName
-
-                    pom.project {
-                        name project.archivesBaseName
-                        packaging 'jar'
-                        description 'ThirdPersonElytra'
-                        url 'https://github.com/pauljoda/Third-Person-Elytra'
-                        scm {
-                            url 'https://github.com/pauljoda/Third-Person-Elytra'
-                            connection 'scm:git:git@github.com/pauljoda/Third-Person-Elytra.git'
-                            developerConnection 'scm:git:git@github.com/TeamBR-Modding/Nucleus.git'
-                        }
-                        issueManagement {
-                            system 'github'
-                            url 'https://github.com/pauljoda/Third-Person-Elytra/issues'
-                        }
-                        licenses {
-                            license {
-                                name 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License'
-                                url 'http://creativecommons.org/licenses/by-nc-sa/4.0/'
-                                distribution 'repo'
-                            }
-                        }
-                        developers {
-                            developer {
-                                id 'pauljoda'
-                                name 'pauljoda'
-                                roles {
-                                    role 'developer'
-                                }
-                            }
-                        }
-                    }
-                }
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/pauljoda/Third-Person-Elytra")
+            credentials {
+                username = "pauljoda"
+                password = System.getenv("GITHUB_TOKEN")
             }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
