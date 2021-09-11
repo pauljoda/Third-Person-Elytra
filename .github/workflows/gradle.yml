@@ -29,4 +29,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         path: /home/runner/work/Third-Person-Elytra/Third-Person-Elytra/build/libs/*
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
