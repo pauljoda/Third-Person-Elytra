@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +30,7 @@ public class ThirdPersonElytra {
             KeyPressedEvent.INSTANCE.registerBindings();
 
             // Inline method, just want to update local values on changes
-            FMLJavaModLoadingContext.get().getModEventBus().addListener((ModConfig.ModConfigEvent event) -> {
+            FMLJavaModLoadingContext.get().getModEventBus().addListener((ModConfigEvent event) -> {
                 final ModConfig config = event.getConfig();
                 // Rebake the configs when they change
                 if (config.getSpec() == ConfigManager.CLIENT_SPEC) {
